@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-svc
+  annotations:
+    cloud.google.com/backend-config: '{"default": "my-backend-config"}'    
+  labels:
+    app: sbb
+spec:
+  type: ClusterIP  # 외부에 노출되지 않도록 ClusterIP 사용
+  selector:
+    app: sbb
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sbb
+  labels:
+    app: sbb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sbb
+  template:
+    metadata:
+      labels:
+        app: sbb
+    spec:
+      containers:
+      - name: sbb
+        image: jinny908/sbb2:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
