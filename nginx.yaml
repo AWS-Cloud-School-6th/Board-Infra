@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: nginx
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nareunhang/test:frodo13
+        image: nareunhang/test:frodo14
         imagePullPolicy: Always
 
