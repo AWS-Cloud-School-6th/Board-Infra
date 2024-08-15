@@ -5,16 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "myip"
     # Uncomment and provide the correct name if using Managed Certificates
-    # networking.gke.io/managed-certificates: managed-cert
+    networking.gke.io/managed-certificates: www-seungho2
     networking.gke.io/v1beta1.FrontendConfig: "my-frontend-config"
 spec:
-  tls:
-  - hosts:
-    - www.malbee.site
-    - was.malbee.site
-    secretName: www-frodo
   rules:
-  - host: www.malbee.site
+  - host: www.seungho.shop
     http:
       paths:
       - pathType: Prefix
@@ -24,7 +19,7 @@ spec:
             name: nginx-svc
             port:
               number: 80
-  - host: was.malbee.site
+  - host: was.seungho.shop
     http:
       paths:
       - pathType: Prefix
