@@ -33,7 +33,23 @@ spec:
     spec:
       containers:
       - name: sbb
-        image: jinny908/sbb2:v1
+        image: nareunhang/test:finalback
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        env:
+        - name: DB_URL
+          valueFrom:
+            configMapKeyRef:
+              name: spring-conf
+              key: MYSQL_URL
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: spring-conf
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: spring-conf
+              key: MYSQL_PASSWORD

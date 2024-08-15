@@ -11,3 +11,6 @@ spec:
     type: HTTP
     requestPath: /actuator/health
     port: 8080
+  sessionAffinity:
+    affinityType: "GENERATED_COOKIE"
+    affinityCookieTtlSec: 3600  # 쿠키의 TTL(Time-To-Live)을 설정, 3600초는 1시간
